@@ -1,0 +1,311 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local RainbowChar = Instance.new("TextButton")
+local Pickupallunlockedprinters = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local noclipbypass = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local Line = Instance.new("TextLabel")
+local BottomTitle = Instance.new("TextLabel")
+local Exit = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
+local TextButton_5 = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+Frame.BackgroundTransparency = 0.450
+Frame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Frame.Position = UDim2.new(0.0998542309, 0, 0.294478536, 0)
+Frame.Size = UDim2.new(0, 291, 0, 335)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Name = "Title"
+Title.Parent = Frame
+Title.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+Title.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Title.Position = UDim2.new(-0.00323853386, 0, -0.128431454, 0)
+Title.Size = UDim2.new(0, 291, 0, 43)
+Title.Font = Enum.Font.SourceSans
+Title.Text = "Anomic"
+Title.TextColor3 = Color3.fromRGB(255, 0, 0)
+Title.TextSize = 40.000
+
+
+RainbowChar.Name = "Rainbow Char"
+RainbowChar.Parent = Frame
+RainbowChar.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+RainbowChar.BorderColor3 = Color3.fromRGB(255, 0, 0)
+RainbowChar.Position = UDim2.new(0.0378006883, 0, 0.06268657, 0)
+RainbowChar.Size = UDim2.new(0, 129, 0, 52)
+RainbowChar.Font = Enum.Font.SourceSans
+RainbowChar.Text = "Rainbow Char"
+RainbowChar.TextColor3 = Color3.fromRGB(255, 0, 0)
+RainbowChar.TextSize = 20.000
+RainbowChar.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+
+Pickupallunlockedprinters.Name = "Pick up all unlocked printers"
+Pickupallunlockedprinters.Parent = Frame
+Pickupallunlockedprinters.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+Pickupallunlockedprinters.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Pickupallunlockedprinters.Position = UDim2.new(0.518900335, 0, 0.06268657, 0)
+Pickupallunlockedprinters.Size = UDim2.new(0, 129, 0, 52)
+Pickupallunlockedprinters.Font = Enum.Font.SourceSans
+Pickupallunlockedprinters.Text = "Grab printers"
+Pickupallunlockedprinters.TextColor3 = Color3.fromRGB(255, 0, 0)
+Pickupallunlockedprinters.TextSize = 20.000
+Pickupallunlockedprinters.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+Pickupallunlockedprinters.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Shariiii/Anomic-Stuff/main/Pick%20All%20UnLocked%20Printers.lua"))()
+end)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+TextButton.BorderColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.Position = UDim2.new(0.0378006883, 0, 0.24477613, 0)
+TextButton.Size = UDim2.new(0, 129, 0, 52)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Hamster ball"
+TextButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.TextSize = 20.000
+TextButton.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.MouseButton1Down:connect(function()
+	local UserInputService = game:GetService("UserInputService")
+	local RunService = game:GetService("RunService")
+	local Camera = workspace.CurrentCamera
+
+	local SPEED_MULTIPLIER = 30
+	local JUMP_POWER = 60
+	local JUMP_GAP = 0.3
+
+	local character = game.Players.LocalPlayer.Character
+
+	for i,v in ipairs(character:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+		end
+	end
+
+	local ball = character.HumanoidRootPart
+	ball.Shape = Enum.PartType.Ball
+	ball.Size = Vector3.new(5,5,5)
+	local humanoid = character:WaitForChild("Humanoid")
+	local params = RaycastParams.new()
+	params.FilterType = Enum.RaycastFilterType.Blacklist
+	params.FilterDescendantsInstances = {character}
+
+	local tc = RunService.RenderStepped:Connect(function(delta)
+		ball.CanCollide = true
+		humanoid.PlatformStand = true
+		if UserInputService:GetFocusedTextBox() then return end
+		if UserInputService:IsKeyDown("W") then
+			ball.RotVelocity -= Camera.CFrame.RightVector * delta * SPEED_MULTIPLIER
+		end
+		if UserInputService:IsKeyDown("A") then
+			ball.RotVelocity -= Camera.CFrame.LookVector * delta * SPEED_MULTIPLIER
+		end
+		if UserInputService:IsKeyDown("S") then
+			ball.RotVelocity += Camera.CFrame.RightVector * delta * SPEED_MULTIPLIER
+		end
+		if UserInputService:IsKeyDown("D") then
+			ball.RotVelocity += Camera.CFrame.LookVector * delta * SPEED_MULTIPLIER
+		end
+		--ball.RotVelocity = ball.RotVelocity - Vector3.new(0,ball.RotVelocity.Y/50,0)
+	end)
+
+	UserInputService.JumpRequest:Connect(function()
+		local result = workspace:Raycast(
+			ball.Position,
+			Vector3.new(
+				0,
+				-((ball.Size.Y/2)+JUMP_GAP),
+				0
+			),
+			params
+		)
+		if result then
+			ball.Velocity = ball.Velocity + Vector3.new(0,JUMP_POWER,0)
+		end
+	end)
+
+	Camera.CameraSubject = ball
+	humanoid.Died:Connect(function() tc:Disconnect() end)
+end)
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+TextButton_2.BorderColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_2.Position = UDim2.new(0.518900335, 0, 0.24477613, 0)
+TextButton_2.Size = UDim2.new(0, 129, 0, 52)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "Jump Power 100"
+TextButton_2.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_2.TextSize = 20.000
+TextButton_2.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_2.MouseButton1Down:connect(function()
+	local plr = game.Players.LocalPlayer
+
+	plr.Character.Humanoid.JumpPower = 100
+end)
+noclipbypass.Name = "noclipbypass"
+noclipbypass.Parent = Frame
+noclipbypass.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+noclipbypass.BorderColor3 = Color3.fromRGB(255, 0, 0)
+noclipbypass.Position = UDim2.new(0.0378006883, 0, 0.420895547, 0)
+noclipbypass.Size = UDim2.new(0, 129, 0, 52)
+noclipbypass.Font = Enum.Font.SourceSans
+noclipbypass.Text = "Grab dropped guns"
+noclipbypass.TextColor3 = Color3.fromRGB(255, 0, 0)
+noclipbypass.TextSize = 20.000
+noclipbypass.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+noclipbypass.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Shariiii/Anomic-Stuff/main/Pick%20all%20dropped%20tools.lua"))()
+end)
+
+TextButton_3.Parent = Frame
+TextButton_3.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+TextButton_3.BorderColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_3.Position = UDim2.new(0.518900335, 0, 0.420895547, 0)
+TextButton_3.Size = UDim2.new(0, 129, 0, 52)
+TextButton_3.Font = Enum.Font.SourceSans
+TextButton_3.Text = "Car Super Speed"
+TextButton_3.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_3.TextSize = 20.000
+TextButton_3.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_3.MouseButton1Down:connect(function()
+	local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+	local bodyfuck=Instance.new("BodyThrust", game:GetService("Players").LocalPlayer.Character.Humanoid.SeatPart.Parent:FindFirstChild("Engine"))
+	mouse.KeyDown:connect(function(key)
+		if key:byte() == 119 then
+			bodyfuck.force=Vector3.new(0,0,-6000)
+		end end)
+	mouse.KeyUp:connect(function(key)
+		if key:byte() == 119 then
+			bodyfuck.force=Vector3.new(0,0,0)
+		end end)
+	local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+	local bodyfuck=Instance.new("BodyThrust", game:GetService("Players").LocalPlayer.Character.Humanoid.SeatPart.Parent:FindFirstChild("Engine"))
+	mouse.KeyDown:connect(function(key)
+		if key:byte() == 115 then
+			bodyfuck.force=Vector3.new(0,0,8000)
+		end end)
+	mouse.KeyUp:connect(function(key)
+		if key:byte() == 115 then
+			bodyfuck.force=Vector3.new(0,0,0)
+		end end)
+end)
+Line.Name = "Line"
+Line.Parent = Frame
+Line.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Line.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Line.Position = UDim2.new(-0.00323853386, 0, 0.787986457, 0)
+Line.Size = UDim2.new(0, 291, 0, 0)
+Line.Font = Enum.Font.SourceSans
+Line.Text = ""
+Line.TextColor3 = Color3.fromRGB(255, 0, 0)
+Line.TextSize = 40.000
+Line.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+
+BottomTitle.Name = "Bottom Title"
+BottomTitle.Parent = Frame
+BottomTitle.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+BottomTitle.BorderColor3 = Color3.fromRGB(255, 0, 0)
+BottomTitle.Position = UDim2.new(-0.00323853386, 0, 0.832762599, 0)
+BottomTitle.Size = UDim2.new(0, 291, 0, 43)
+BottomTitle.Font = Enum.Font.SourceSans
+BottomTitle.Text = "pro dev#6179"
+BottomTitle.TextColor3 = Color3.fromRGB(255, 0, 0)
+BottomTitle.TextSize = 40.000
+
+Exit.Name = "Exit"
+Exit.Parent = Frame
+Exit.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+Exit.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Exit.Position = UDim2.new(0.886597931, 0, -0.110447712, 0)
+Exit.Size = UDim2.new(0, 26, 0, 28)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(255, 0, 0)
+Exit.TextSize = 20.000
+Exit.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+
+TextButton_4.Parent = Frame
+TextButton_4.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+TextButton_4.BorderColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_4.Position = UDim2.new(0.0378006846, 0, 0.599999964, 0)
+TextButton_4.Size = UDim2.new(0, 129, 0, 52)
+TextButton_4.Font = Enum.Font.SourceSans
+TextButton_4.Text = "Walkspeed Bypass"
+TextButton_4.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_4.TextSize = 20.000
+TextButton_4.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_4.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Shariiii/Anomic-Stuff/main/WalkSpeed%20Bypass%20(Open%20Source).lua"))()
+end)
+
+TextButton_5.Parent = Frame
+TextButton_5.BackgroundColor3 = Color3.fromRGB(135, 135, 135)
+TextButton_5.BorderColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_5.Position = UDim2.new(0.518900335, 0, 0.600000024, 0)
+TextButton_5.Size = UDim2.new(0, 129, 0, 52)
+TextButton_5.Font = Enum.Font.SourceSans
+TextButton_5.Text = "Hide name"
+TextButton_5.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_5.TextSize = 20.000
+TextButton_5.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+TextButton_5.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Shariiii/Anomic-Stuff/main/Name%20Who.lua"))()
+end)
+
+-- Scripts:
+
+local function AFQIXDH_fake_script() -- Exit.Exit 
+	local script = Instance.new('Script', Exit)
+
+	Exit = script.Parent.Parent
+	
+	function onClick()
+	if Exit.Visible == true then
+	Exit.Visible = false
+	else Exit.Visible = true
+	end
+	end
+	
+	script.Parent.MouseButton1Click:connect(onClick)
+end
+
+RainbowChar.MouseButton1Down:connect(function()
+	local rand = Random.new()
+	local function randColor()
+		return Color3.new(rand:NextNumber(), rand:NextNumber(),rand:NextNumber())
+	end
+
+	while wait(.2) do
+		local args = {
+			[1] = "Color",
+			[2] = randColor(),
+			[3] = "SkinColor"
+		}
+
+		game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer(unpack(args))
+		args[2] = randColor()
+		args[3] = "HairColor"
+		game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer(unpack(args))
+	end
+end)
+ScreenGui.ResetOnSpawn = false
+coroutine.wrap(AFQIXDH_fake_script)()
