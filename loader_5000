@@ -1,0 +1,273 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Page1 = Instance.new("Frame")
+local Title1 = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local UICorner_2 = Instance.new("UICorner")
+local InfiniteJump = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local IK = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local TextLabel_2 = Instance.new("TextLabel")
+local Exit = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local Page2 = Instance.new("Frame")
+local Title2 = Instance.new("Frame")
+local UICorner_6 = Instance.new("UICorner")
+local TextLabel_3 = Instance.new("TextLabel")
+local UICorner_7 = Instance.new("UICorner")
+local reset = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local RainbowChar = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local TextLabel_4 = Instance.new("TextLabel")
+local Exit_2 = Instance.new("TextButton")
+local UICorner_10 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Page1.Name = "Page 1"
+Page1.Parent = ScreenGui
+Page1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Page1.BackgroundTransparency = 0.700
+Page1.Position = UDim2.new(0.0313411094, 0, 0.384049088, 0)
+Page1.Size = UDim2.new(0, 252, 0, 261)
+Page1.Active = true
+Page1.Draggable = true
+
+Title1.Name = "Title 1"
+Title1.Parent = Page1
+Title1.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Title1.Size = UDim2.new(0, 252, 0, 38)
+
+
+UICorner.Parent = Title1
+
+TextLabel.Parent = Title1
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.103174604, 0, -0.180883229, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Anomic, Page 1"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 22.000
+
+UICorner_2.Parent = Page1
+
+InfiniteJump.Name = "InfiniteJump"
+InfiniteJump.Parent = Page1
+InfiniteJump.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+InfiniteJump.Position = UDim2.new(0.0595238134, 0, 0.195402294, 0)
+InfiniteJump.Size = UDim2.new(0, 221, 0, 50)
+InfiniteJump.Font = Enum.Font.SourceSans
+InfiniteJump.Text = "Infinite Jump"
+InfiniteJump.TextColor3 = Color3.fromRGB(255, 255, 255)
+InfiniteJump.TextSize = 22.000
+InfiniteJump.TextWrapped = true
+InfiniteJump.MouseButton1Down:connect(function()
+    local Player = game:GetService'Players'.LocalPlayer;
+    local UIS = game:GetService'UserInputService';
+
+    _G.JumpHeight = 50;
+
+    function Action(Object, Function) if Object ~= nil then Function(Object); end end
+
+    UIS.InputBegan:connect(function(UserInput)
+        if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+            Action(Player.Character.Humanoid, function(self)
+                if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                    Action(self.Parent.HumanoidRootPart, function(self)
+                        self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
+                    end)
+                end
+            end)
+        end
+    end)
+end)
+
+UICorner_3.Parent = InfiniteJump
+
+IK.Name = "IK"
+IK.Parent = Page1
+IK.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+IK.Position = UDim2.new(0.0595238134, 0, 0.528735638, 0)
+IK.Size = UDim2.new(0, 221, 0, 50)
+IK.Font = Enum.Font.SourceSans
+IK.Text = "Instant Kill"
+IK.TextColor3 = Color3.fromRGB(255, 255, 255)
+IK.TextSize = 22.000
+IK.TextWrapped = true
+IK.MouseButton1Down:connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Shariiii/Anomic-Stuff/main/OP%20OP%20Gun%20Script%20V0.1", true))()
+end)
+
+UICorner_4.Parent = IK
+
+TextLabel_2.Parent = Page1
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.Position = UDim2.new(0, 0, 0.862069011, 0)
+TextLabel_2.Size = UDim2.new(0, 252, 0, 0)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = ""
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 14.000
+
+Exit.Name = "Exit"
+Exit.Parent = Page1
+Exit.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Exit.Position = UDim2.new(0.841269851, 0, 0.0229885057, 0)
+Exit.Size = UDim2.new(0, 24, 0, 23)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
+Exit.TextSize = 22.000
+Exit.TextWrapped = true
+
+UICorner_5.Parent = Exit
+
+Page2.Name = "Page 2"
+Page2.Parent = ScreenGui
+Page2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Page2.BackgroundTransparency = 0.700
+Page2.Position = UDim2.new(0.22740522, 0, 0.384049088, 0)
+Page2.Size = UDim2.new(0, 252, 0, 261)
+Page2.Active = true
+Page2.Draggable = true
+
+Title2.Name = "Title 2"
+Title2.Parent = Page2
+Title2.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Title2.Size = UDim2.new(0, 252, 0, 38)
+
+UICorner_6.Parent = Title2
+
+TextLabel_3.Parent = Title2
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.Position = UDim2.new(0.103174582, 0, -0.180883229, 0)
+TextLabel_3.Size = UDim2.new(0, 200, 0, 50)
+TextLabel_3.Font = Enum.Font.SourceSans
+TextLabel_3.Text = "Anomic, Page 2"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 22.000
+
+UICorner_7.Parent = Page2
+
+reset.Name = "reset"
+reset.Parent = Page2
+reset.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+reset.Position = UDim2.new(0.0595238209, 0, 0.195402294, 0)
+reset.Size = UDim2.new(0, 221, 0, 50)
+reset.Font = Enum.Font.SourceSans
+reset.Text = "Reset Cash to 50K"
+reset.TextColor3 = Color3.fromRGB(255, 255, 255)
+reset.TextSize = 22.000
+reset.TextWrapped = true
+reset.MouseButton1Down:connect(function()
+    for i,v in pairs(workspace.PlayerVehicles:GetChildren()) do
+        game:GetService("ReplicatedStorage")["_CS.Events"].FillUpCar:FireServer(v, 9e9)
+    end
+    wait(.2)
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+
+UICorner_8.Parent = reset
+
+RainbowChar.Name = "Rainbow Char"
+RainbowChar.Parent = Page2
+RainbowChar.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+RainbowChar.Position = UDim2.new(0.0595238209, 0, 0.528735638, 0)
+RainbowChar.Size = UDim2.new(0, 221, 0, 50)
+RainbowChar.Font = Enum.Font.SourceSans
+RainbowChar.Text = "Rainbow Char"
+RainbowChar.TextColor3 = Color3.fromRGB(255, 255, 255)
+RainbowChar.TextSize = 22.000
+RainbowChar.TextWrapped = true
+RainbowChar.MouseButton1Down:connect(function()
+    local rand = Random.new()
+    local function randColor()
+        return Color3.new(rand:NextNumber(), rand:NextNumber(),rand:NextNumber())
+    end
+
+    while wait(.2) do
+        local args = {
+            [1] = "Color",
+            [2] = randColor(),
+            [3] = "SkinColor"
+        }
+
+        game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer(unpack(args))
+        args[2] = randColor()
+        args[3] = "HairColor"
+        game:GetService("ReplicatedStorage")["_CS.Events"].EquipAvatarItem:FireServer(unpack(args))
+    end
+end)
+
+UICorner_9.Parent = RainbowChar
+
+TextLabel_4.Parent = Page2
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.Position = UDim2.new(-0.0039682542, 0, 0.862069011, 0)
+TextLabel_4.Size = UDim2.new(0, 252, 0, 0)
+TextLabel_4.Font = Enum.Font.SourceSans
+TextLabel_4.Text = ""
+TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.TextSize = 14.000
+
+Exit_2.Name = "Exit"
+Exit_2.Parent = Page2
+Exit_2.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
+Exit_2.Position = UDim2.new(0.841269851, 0, 0.0229885057, 0)
+Exit_2.Size = UDim2.new(0, 24, 0, 23)
+Exit_2.Font = Enum.Font.SourceSans
+Exit_2.Text = "X"
+Exit_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Exit_2.TextSize = 22.000
+Exit_2.TextWrapped = true
+
+UICorner_10.Parent = Exit_2
+
+-- Scripts:
+
+local function EFOZK_fake_script() -- Exit.Exit 
+    local script = Instance.new('Script', Exit)
+
+    Exit = script.Parent.Parent
+    
+    function onClick()
+    if Exit.Visible == true then
+    Exit.Visible = false
+    else Button.Visible = true
+    end
+    end
+    
+    script.Parent.MouseButton1Click:connect(onClick)
+end
+coroutine.wrap(EFOZK_fake_script)()
+local function CHZOP_fake_script() -- Exit_2.Exit 
+    local script = Instance.new('Script', Exit_2)
+
+    Exit_2 = script.Parent.Parent
+    
+    function onClick()
+    if Exit_2.Visible == true then
+    Exit_2.Visible = false
+    else Exit_2.Visible = true
+    end
+    end
+    
+    script.Parent.MouseButton1Click:connect(onClick)
+end
+ScreenGui.ResetOnSpawn = false
+coroutine.wrap(CHZOP_fake_script)()
