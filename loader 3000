@@ -40,13 +40,14 @@ Page1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Page1.BackgroundTransparency = 0.700
 Page1.Position = UDim2.new(0.0313411094, 0, 0.384049088, 0)
 Page1.Size = UDim2.new(0, 252, 0, 261)
+Page1.Active = true
+Page1.Draggable = true
 
 Title1.Name = "Title 1"
 Title1.Parent = Page1
 Title1.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
 Title1.Size = UDim2.new(0, 252, 0, 38)
-Title1.Active = true
-Title1.Draggable = true
+
 
 UICorner.Parent = Title1
 
@@ -140,13 +141,13 @@ Page2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Page2.BackgroundTransparency = 0.700
 Page2.Position = UDim2.new(0.22740522, 0, 0.384049088, 0)
 Page2.Size = UDim2.new(0, 252, 0, 261)
+Page2.Active = true
+Page2.Draggable = true
 
 Title2.Name = "Title 2"
 Title2.Parent = Page2
 Title2.BackgroundColor3 = Color3.fromRGB(77, 77, 77)
 Title2.Size = UDim2.new(0, 252, 0, 38)
-Title2.Active = true
-Title2.Draggable = true
 
 UICorner_6.Parent = Title2
 
@@ -268,4 +269,5 @@ local function CHZOP_fake_script() -- Exit_2.Exit
     
     script.Parent.MouseButton1Click:connect(onClick)
 end
+ScreenGui.ResetOnSpawn = false
 coroutine.wrap(CHZOP_fake_script)()
